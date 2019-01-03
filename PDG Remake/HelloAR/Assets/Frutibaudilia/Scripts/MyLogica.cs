@@ -8,7 +8,7 @@ public class MyLogica : MonoBehaviour {
         public List<int> colorList;
 
         public float showTime = 0.5f;
-        public float pauseTime =0.2f;
+        public float pauseTime =2f;
 
         bool maquina = false;
         public bool player = false;
@@ -17,7 +17,7 @@ public class MyLogica : MonoBehaviour {
         private int myRandom;
         public int level = 1;
         private int playerLevel;
-        
+
 
 	// Use this for initialization
 	void Start () {
@@ -28,6 +28,7 @@ public class MyLogica : MonoBehaviour {
                 myButtons[i].onClick += ButtonClicked;
                 myButtons[i].myNumber = i;
             }
+
 	}
         void ButtonClicked(int _number)
         {
@@ -62,7 +63,7 @@ public class MyLogica : MonoBehaviour {
             {
                 //vacio legal2
             }
-	}
+        }
         IEnumerator Robot()
         {
             for(int i =0; i<level; i++)
@@ -72,7 +73,7 @@ public class MyLogica : MonoBehaviour {
                     myRandom = Random.Range(0, myButtons.Length);
                     colorList.Add(myRandom);
                 }
-                yield return new WaitForSeconds(0.3f);
+                yield return new WaitForSeconds(1f);
                 myButtons[colorList[i]].ClickedColor();
                 myButtons[colorList[i]].mySound.Play();
                 yield return new WaitForSeconds(showTime);

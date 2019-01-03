@@ -14,6 +14,8 @@ public class OnClick : MonoBehaviour {
     public AudioSource mySound;
     public SampleImageTargetBehaviour myTarget;
         bool seeActivo;
+        public Animator anim;
+        public int numeroAnim;
 
         public event ClickEv onClick;
       
@@ -23,11 +25,12 @@ public class OnClick : MonoBehaviour {
             mReneder.enabled=true;
             myTp = transform.position;
             seeActivo = false;
+            anim.SetInteger("Cauca", 0);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
         public void OnMouseDown()
         {
@@ -37,7 +40,7 @@ public class OnClick : MonoBehaviour {
                 transform.position = new Vector3(myTp.x, myTp.y, myTp.z);
                 onClick.Invoke(myNumber);
                 StartCoroutine(Sound());
-
+                StartCoroutine(Animacion());
             }
         }
         public void OnMouseUp()
@@ -59,6 +62,13 @@ public class OnClick : MonoBehaviour {
         {
             mySound.Play();
             yield return new WaitForSeconds(.5f);
+        }
+        IEnumerator Animacion()
+        {
+            anim.SetInteger("Cauca", numeroAnim);
+            yield return new WaitForSeconds(0.6f);
+            anim.SetInteger("Cauca", 0);
+            yield return new WaitForSeconds(0.2f);
         }
     }
 }
