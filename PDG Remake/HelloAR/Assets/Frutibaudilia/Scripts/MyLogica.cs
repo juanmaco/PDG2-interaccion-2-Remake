@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Sample { 
 public class MyLogica : MonoBehaviour {
@@ -18,10 +19,16 @@ public class MyLogica : MonoBehaviour {
         public int level = 1;
         private int playerLevel;
 
+        public Text scoreT;
+        public Text lifeT;
+        int score = 0;
+        int life = 3;
+        public GameObject mCanvas;
 
 	// Use this for initialization
 	void Start () {
             playerLevel = 0;
+            mCanvas.SetActive(false);
             maquina = true;
             for(int i=0; i<myButtons.Length; i++)
             {
@@ -38,6 +45,14 @@ public class MyLogica : MonoBehaviour {
                 {
                     playerLevel += 1;
                 }
+                else
+                {
+                    life -= 1;
+                    if(life == 0)
+                    {
+                        FindObjectOfType<GameManager>().GameOver();
+                    }
+                }
                 if(playerLevel == level)
                 {
                     level += 1;
@@ -49,6 +64,8 @@ public class MyLogica : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+            scoreT.text = level.ToString();
+            lifeT.text = life.ToString();
             if (maquina)
             {
                 player = false;
