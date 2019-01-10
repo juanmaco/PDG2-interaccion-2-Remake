@@ -24,11 +24,17 @@ public class MyLogica : MonoBehaviour {
         int score = 0;
         int life = 3;
         public GameObject mCanvas;
+        public GameObject maquinaU;
+        public GameObject turnoP;
+        public GameObject mVictoria;
+        bool showUI = false;
 
 	// Use this for initialization
 	void Start () {
             playerLevel = 0;
+            turnoP.SetActive(false);
             mCanvas.SetActive(false);
+            mVictoria.SetActive(false);
             maquina = true;
             for(int i=0; i<myButtons.Length; i++)
             {
@@ -51,6 +57,8 @@ public class MyLogica : MonoBehaviour {
                     if(life == 0)
                     {
                         FindObjectOfType<GameManager>().GameOver();
+                        player = false;
+                        maquina = false;
                     }
                 }
                 if(playerLevel == level)
@@ -58,6 +66,12 @@ public class MyLogica : MonoBehaviour {
                     level += 1;
                     playerLevel = 0;
                     maquina = true;
+                    if(level == 5)
+                    {
+                        maquina = false;
+                        player = false;
+                        FindObjectOfType<GameManager>().Win();
+                    }
                 }
             }
         }
@@ -72,17 +86,24 @@ public class MyLogica : MonoBehaviour {
                 maquina = false;
                 StartCoroutine(Robot());
             }
-            if(player == false && gameO == false)
+            if(showUI == false)
             {
-               //vacio legal 
+                maquinaU.SetActive(true);
+                turnoP.SetActive(false);
             }
-            if(player== true)
+            else
             {
-                //vacio legal2
+                maquinaU.SetActive(false);
+                turnoP.SetActive(true);
+            }
+            if(player == true)
+            {
+                showUI = true;
             }
         }
         IEnumerator Robot()
         {
+            showUI = false;
             for(int i =0; i<level; i++)
             {
                 if( colorList.Count < level)

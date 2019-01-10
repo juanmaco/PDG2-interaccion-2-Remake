@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
     public GameObject mCanvas;
+    public GameObject mVictoria;
 
 	// Use this for initialization
 	void Start () {
@@ -24,5 +25,10 @@ public class GameManager : MonoBehaviour {
     void Restart()
     {
         SceneManager.LoadScene("frutibau");
+    }
+    public void Win()
+    {
+        mVictoria.SetActive(true);
+        Invoke("Restart", 10f);
     }
 }
