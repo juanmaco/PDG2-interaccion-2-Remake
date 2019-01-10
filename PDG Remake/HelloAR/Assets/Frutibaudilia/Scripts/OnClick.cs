@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 namespace Sample { 
 public class OnClick : MonoBehaviour {
@@ -36,8 +37,8 @@ public class OnClick : MonoBehaviour {
         {
            if(gameLog.player == true)
             {
-                ClickedColor();
-                transform.position = new Vector3(myTp.x, myTp.y, myTp.z);
+                mReneder.sharedMaterial = lMaterial;
+                //transform.DOMoveY(30, 0.5f);
                 onClick.Invoke(myNumber);
                 StartCoroutine(Sound());
                 StartCoroutine(Animacion());
@@ -45,18 +46,18 @@ public class OnClick : MonoBehaviour {
         }
         public void OnMouseUp()
         {
-            UnclickedColor();
-            transform.position = new Vector3(myTp.x, myTp.y, myTp.z);
+            mReneder.sharedMaterial = nMaterial;
+            // transform.DOMoveY(myTp.y, 1);
         }
         public void ClickedColor()
         {
             mReneder.sharedMaterial = lMaterial;
-            transform.position = new Vector3(myTp.x, myTp.y , myTp.z);
+            transform.DOMoveY(30, 0.5f);
         }
         public void UnclickedColor()
         {
             mReneder.sharedMaterial = nMaterial;
-            transform.position = new Vector3(myTp.x, myTp.y, myTp.z);
+            transform.DOMoveY(myTp.y, 0.5f);
         }
         IEnumerator Sound()
         {
