@@ -26,7 +26,7 @@ public class OnClick : MonoBehaviour {
             mReneder.enabled=true;
             myTp = transform.position;
             seeActivo = false;
-            anim.SetInteger("Cauca", 0);
+            anim.SetInteger("Kauca", 0);
 	}
 	
 	// Update is called once per frame
@@ -66,9 +66,9 @@ public class OnClick : MonoBehaviour {
         }
         IEnumerator Animacion()
         {
-            anim.SetInteger("Cauca", numeroAnim);
-            yield return new WaitForSeconds(0.6f);
-            anim.SetInteger("Cauca", 0);
+            anim.SetInteger("Kauca", numeroAnim);
+            yield return new WaitForSeconds(1f);
+            anim.SetInteger("Kauca", 0);
             yield return new WaitForSeconds(0.2f);
         }
     }
