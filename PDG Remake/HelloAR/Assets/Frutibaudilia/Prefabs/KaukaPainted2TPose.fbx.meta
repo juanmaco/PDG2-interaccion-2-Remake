@@ -147,7 +147,37 @@ ModelImporter:
     7400000: mixamo.com
     9500000: //RootNode
     13700000: Body
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Body_TXTR
+    second: {fileID: 2800000, guid: 80b7a2b218b124c43bda3ee6ffec200a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Cloth1_TXTR
+    second: {fileID: 2800000, guid: 5303a896615658747b71712e5a2d5a6f, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Cloth_TXTR
+    second: {fileID: 2800000, guid: 01de4d74aece2184dadb0392c649c94f, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Extract3_TXTR
+    second: {fileID: 2800000, guid: 9e4aadf6093a5b7429ffd3a387c69b6f, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: KaucaV2_2_retopologized2_TXTR
+    second: {fileID: 2800000, guid: bce2247d9b68b9d47b39c114b2d5f8bc, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: PM3D_Sphere3D_2_TXTR
+    second: {fileID: 2800000, guid: c08e54884e2c77e408e578e419f35192, type: 3}
   materials:
     importMaterials: 1
     materialName: 0
