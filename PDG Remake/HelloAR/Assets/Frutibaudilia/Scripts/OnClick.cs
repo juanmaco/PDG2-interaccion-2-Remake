@@ -18,6 +18,7 @@ public class OnClick : MonoBehaviour {
         public Animator anim;
         public int numeroAnim;
 
+
         public event ClickEv onClick;
       
         // Use this for initialization
@@ -31,7 +32,7 @@ public class OnClick : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+            OnSee();
 	}
         public void OnMouseDown()
         {
@@ -70,6 +71,24 @@ public class OnClick : MonoBehaviour {
             yield return new WaitForSeconds(1f);
             anim.SetInteger("Kauca", 0);
             yield return new WaitForSeconds(0.2f);
+        }
+        void OnSee()
+        {
+            if(myTarget.ReturnState() && !seeActivo )
+            {
+                mReneder.sharedMaterial = lMaterial;
+                //transform.DOMoveY(30, 0.5f);
+                onClick.Invoke(myNumber);
+                StartCoroutine(Sound());
+                StartCoroutine(Animacion());
+                seeActivo = true;
+            }else if (!myTarget.ReturnState())
+            {
+                mReneder.sharedMaterial = nMaterial;
+                // transform.DOMoveY(myTp.y, 1);
+                seeActivo = false;
+                Debug.LogError("no sè: " + myTarget.ReturnState());
+            }
         }
     }
 }
