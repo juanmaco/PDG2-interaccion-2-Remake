@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
     public GameObject mCanvas;
     public GameObject mVictoria;
+    public AudioSource win;
 
 	// Use this for initialization
 	void Start () {
@@ -29,6 +30,7 @@ public class GameManager : MonoBehaviour {
     public void Win()
     {
         mVictoria.SetActive(true);
+        win.Play();
         Invoke("Restart", 10f);
     }
 }

@@ -29,9 +29,11 @@ public class MyLogica : MonoBehaviour {
         public GameObject turnoP;
         public GameObject mVictoria;
         bool showUI = false;
+        public AudioSource wrong;
+        public AudioSource point;
 
-	// Use this for initialization
-	void Start () {
+        // Use this for initialization
+        void Start () {
             playerLevel = 0;
             turnoP.SetActive(false);
             mCanvas.SetActive(false);
@@ -55,6 +57,7 @@ public class MyLogica : MonoBehaviour {
                 else
                 {
                     life -= 1;
+                    StartCoroutine(Wrong());
                     if(life == 0)
                     {
                         FindObjectOfType<GameManager>().GameOver();
@@ -67,7 +70,8 @@ public class MyLogica : MonoBehaviour {
                     level += 1;
                     playerLevel = 0;
                     maquina = true;
-                    if(level == 5)
+                    StartCoroutine(Wait());
+                    if (level == 4)
                     {
                         maquina = false;
                         player = false;
@@ -120,6 +124,24 @@ public class MyLogica : MonoBehaviour {
                 yield return new WaitForSeconds(pauseTime);
             }
             player = true;
+        }
+        IEnumerator Wait()
+        {
+            scoreT.DOColor(Color.green, 0.5f);
+            scoreT.transform.DOScale(1.5f, 1f);
+            point.Play();
+            yield return new WaitForSeconds(1f);
+            scoreT.DOColor(Color.black, 0.5f);
+            scoreT.transform.DOScale(1f, 1f);
+        }
+        IEnumerator Wrong()
+        {
+            lifeT.DOColor(Color.red, 0.5f);
+            lifeT.transform.DOScale(1.5f, 1f);
+            wrong.Play();
+            yield return new WaitForSeconds(1f);
+            lifeT.DOColor(Color.black, 0.5f);
+            lifeT.transform.DOScale(1f, 1f);
         }
 }
 }
