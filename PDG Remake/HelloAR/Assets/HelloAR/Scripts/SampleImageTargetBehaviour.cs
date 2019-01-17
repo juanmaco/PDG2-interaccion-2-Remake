@@ -25,24 +25,24 @@ namespace Sample
 
         void OnTargetFound(TargetAbstractBehaviour behaviour)
         {
-            Debug.Log("Found: " + Target.Id);
+            //Debug.Log("Found: " + Target.Id);
             isActive = true;
         }
 
         void OnTargetLost(TargetAbstractBehaviour behaviour)
         {
-            Debug.Log("Lost: " + Target.Id);
+            //Debug.Log("Lost: " + Target.Id);
             isActive = false;
         }
 
         void OnTargetLoad(ImageTargetBaseBehaviour behaviour, ImageTrackerBaseBehaviour tracker, bool status)
         {
-            Debug.Log("Load target (" + status + "): " + Target.Id + " (" + Target.Name + ") " + " -> " + tracker);
+           // Debug.Log("Load target (" + status + "): " + Target.Id + " (" + Target.Name + ") " + " -> " + tracker);
         }
 
         void OnTargetUnload(ImageTargetBaseBehaviour behaviour, ImageTrackerBaseBehaviour tracker, bool status)
         {
-            Debug.Log("Unload target (" + status + "): " + Target.Id + " (" + Target.Name + ") " + " -> " + tracker);
+           // Debug.Log("Unload target (" + status + "): " + Target.Id + " (" + Target.Name + ") " + " -> " + tracker);
         }
         public bool ReturnState()
         {

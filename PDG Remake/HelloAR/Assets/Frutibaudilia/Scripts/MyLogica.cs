@@ -31,6 +31,9 @@ public class MyLogica : MonoBehaviour {
         bool showUI = false;
         public AudioSource wrong;
         public AudioSource point;
+        public GameObject correct;
+        public GameObject errado;
+        public Animator anim;
 
         // Use this for initialization
         void Start () {
@@ -38,6 +41,8 @@ public class MyLogica : MonoBehaviour {
             turnoP.SetActive(false);
             mCanvas.SetActive(false);
             mVictoria.SetActive(false);
+            correct.SetActive(false);
+            errado.SetActive(false);
             maquina = true;
             for(int i=0; i<myButtons.Length; i++)
             {
@@ -56,6 +61,7 @@ public class MyLogica : MonoBehaviour {
                 }
                 else
                 {
+                    myButtons[0].errado = false;
                     life -= 1;
                     StartCoroutine(Wrong());
                     if(life == 0)
@@ -130,18 +136,23 @@ public class MyLogica : MonoBehaviour {
             scoreT.DOColor(Color.green, 0.5f);
             scoreT.transform.DOScale(1.5f, 1f);
             point.Play();
+            correct.SetActive(true);
             yield return new WaitForSeconds(1f);
             scoreT.DOColor(Color.black, 0.5f);
             scoreT.transform.DOScale(1f, 1f);
+            correct.SetActive(false);
         }
         IEnumerator Wrong()
         {
             lifeT.DOColor(Color.red, 0.5f);
             lifeT.transform.DOScale(1.5f, 1f);
             wrong.Play();
+            errado.SetActive(true);
             yield return new WaitForSeconds(1f);
             lifeT.DOColor(Color.black, 0.5f);
             lifeT.transform.DOScale(1f, 1f);
+            errado.SetActive(false);
+            myButtons[0].errado = true;
         }
 }
 }

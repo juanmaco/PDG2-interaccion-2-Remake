@@ -17,6 +17,7 @@ public class OnClick : MonoBehaviour {
         bool seeActivo;
         public Animator anim;
         public int numeroAnim;
+       public bool errado;
 
 
         public event ClickEv onClick;
@@ -28,6 +29,7 @@ public class OnClick : MonoBehaviour {
             myTp = transform.position;
             seeActivo = false;
             anim.SetInteger("Kauca", 0);
+            errado = true;
 	}
 	
 	// Update is called once per frame
@@ -67,10 +69,20 @@ public class OnClick : MonoBehaviour {
         }
         IEnumerator Animacion()
         {
+            if(errado == true)
+            {
             anim.SetInteger("Kauca", numeroAnim);
             yield return new WaitForSeconds(1f);
             anim.SetInteger("Kauca", 0);
             yield return new WaitForSeconds(0.2f);
+            }
+            else
+            {
+                anim.SetInteger("Kauca", 5);
+                yield return new WaitForSeconds(1f);
+                anim.SetInteger("Kauca", 0);
+                yield return new WaitForSeconds(0.2f);
+            }
         }
         void OnSee()
         {
@@ -87,7 +99,7 @@ public class OnClick : MonoBehaviour {
                 mReneder.sharedMaterial = nMaterial;
                 // transform.DOMoveY(myTp.y, 1);
                 seeActivo = false;
-                Debug.LogError("no sè: " + myTarget.ReturnState());
+               // Debug.LogError("no sè: " + myTarget.ReturnState());
             }
         }
     }
